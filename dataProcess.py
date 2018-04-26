@@ -46,7 +46,7 @@ surf = ax.plot_surface(X, Y, measured_data, cmap=cm.jet,
 fig.colorbar(surf)
 
 
-channel_data = (measured_data[:, 195]) #95 #180 #100 #25 #50 #55 #75 #85 #93 #1
+channel_data = (measured_data[:, 50]) #95 #180 #100 #25 #50 #55 #75 #85 #93 #1 #195
 
 print(max(channel_data))
 fig2 = plt.figure(2)
@@ -61,20 +61,25 @@ print((filtered_channel_data[1000:1020]))
 print(max(channel_data))
 fig2 = plt.figure(4)
 
-avg_size = 100
+# avg_size = 99
+avg_size = 99
 avg_channel_data = np.convolve(channel_data, np.ones((avg_size,)) / avg_size, mode ='valid')
+avg_channel_data = np.convolve(avg_channel_data, np.ones((avg_size,)) / avg_size, mode ='valid')
+avg_channel_data = np.convolve(avg_channel_data, np.ones((avg_size,)) / avg_size, mode ='valid')
+# avg_channel_data = np.convolve(avg_channel_data, np.ones((avg_size,)) / avg_size, mode ='valid')
+# avg_channel_data = np.convolve(avg_channel_data, np.ones((avg_size,)) / avg_size, mode ='valid')
+# avg_channel_data = np.convolve(avg_channel_data, np.ones((avg_size,)) / avg_size, mode ='valid')
+# avg_channel_data = np.convolve(avg_channel_data, np.ones((avg_size,)) / avg_size, mode ='valid')
+
 print(avg_channel_data.shape)
 estimated_avg = np.average((avg_channel_data[0:avg_size*2]))
-change_point_markers1 = np.where(avg_channel_data > 2 * estimated_avg)
-change_point_markers2 = np.where(avg_channel_data < 0.5 * estimated_avg)
-print(type(change_point_markers1[0]))
-change_point_markers = np.concatenate((change_point_markers1[0],change_point_markers2[0]))
+# change_point_markers1 = np.where(avg_channel_data > 2 * estimated_avg)
+# change_point_markers2 = np.where(avg_channel_data < 0.5 * estimated_avg)
+# print(type(change_point_markers1[0]))
+# change_point_markers = np.concatenate((change_point_markers1[0],change_point_markers2[0]))
 print(estimated_avg)
-print(change_point_markers)
-my_marker = change_point_markers
-plt.plot(avg_channel_data, '-gD', markevery=my_marker.tolist())
-
+# print(change_point_markers)
+# my_marker = change_point_markers
+plt.plot(avg_channel_data, '-g')
+np.save('filtrovana_data', avg_channel_data)
 plt.show()
-
-
-
