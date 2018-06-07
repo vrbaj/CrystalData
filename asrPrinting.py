@@ -43,7 +43,9 @@ plt.ylabel('XRD [-]')
 plt.subplot(212)
 plt.plot(x_axe, e[usedGevWindow:endPoint])
 plt.xlabel('k [-]')
-plt.ylabel('e [-]')
+plt.ylabel('e [-]'
+
+
 
 
 data_print[data_print > -20.0] = 0.0
