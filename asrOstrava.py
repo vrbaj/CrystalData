@@ -13,7 +13,7 @@ plt.plot(data_series)
 
 n = 10  # number of taps of filter
 N = data_series.shape[0]  # number of samples
-gev_window = 2000  # length of window for prob. fit
+gev_window = 1000  # length of window for prob. fit
 
 x = np.zeros((N-n, n))  # inputs to filter
 d = np.zeros(N-n)  # data series
@@ -32,7 +32,7 @@ dw = np.copy(w)
 dw[1:] = np.abs(np.diff(dw, n=1, axis=0))
 dw_count = int(dw.shape[0])
 print(dw_count)
-hpp = np.zeros((dw_count,n))
+hpp = np.zeros((dw_count, n))
 for i in range(gev_window, dw.shape[0]):
     print((str(datetime.now())), " processing: ", i)
     for j in range(n):

@@ -24,6 +24,7 @@ for i in range(N-n):
 # creation of learning model (adaptive filter)
 f = pa.filters.FilterNLMS(n, mu=1., w=np.ones(n))
 y, e, w = f.run(d, x)
+np.save('e_data', e)
 
 cislo_vahy = 1
 
@@ -54,8 +55,8 @@ plt.plot(dw[2:])
 plt.title('dw')
 
 plt.figure(7)
-plt.plot(w[2:])
-plt.title('w')
+plt.plot(e[1:])
+plt.title('e')
 
 plt.figure(5)
 plt.plot(np.log10(hpp2))
